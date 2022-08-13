@@ -5,9 +5,8 @@ import io.quarkus.hibernate.orm.panache.kotlin.PanacheEntityBase
 import javax.persistence.*
 
 @Entity(name = "user")
-data class User(
-    val name: String
-    ) : PanacheEntityBase {
+@Cacheable
+class User : PanacheEntityBase {
     companion object: PanacheCompanion<User> {
         fun findByName(name: String) = find("name", name).firstResult()
         fun deleteStefs() = delete("name", "Stef")
@@ -17,4 +16,6 @@ data class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "int")
     var id: Long? = null
+
+    lateinit var name: String
 }

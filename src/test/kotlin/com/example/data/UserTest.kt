@@ -13,7 +13,10 @@ internal class UserTest {
     @Test
     fun test() {
         //given
-        val user = User("user").also { it.persist() }
+        val user = User().also {
+            it.name = "user"
+            it.persist()
+        }
 
         //when
         val find = User.findById(user.id!!)

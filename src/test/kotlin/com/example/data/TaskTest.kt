@@ -11,7 +11,10 @@ class TaskTest {
     @Test
     fun test() {
         //given
-        val user = User("user").also { it.persist() }
+        val user = User().also {
+            it.name = "user"
+            it.persist()
+        }
         val task = Task(user = user, details = "task").also { it.persist() }
 
         //when
